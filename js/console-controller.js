@@ -51,16 +51,22 @@ export class ConsoleController {
             this.view.showMessage('Usage: m <from> <to> [count]', 'error');
             return 'continue';
         }
+
         
         const fromPile = this.parsePile(parts[1]);
         const toPile = this.parsePile(parts[2]);
-        const count = parts[3] ? parseInt(parts[3]) : 1;
-        
+
+        if (!fromPile || !toPile) {
+            this.view.showMessage('Invalid pile. Use: W (waste), T0-T6 (tableau), F0-F3 (foundation)', 'error');
+            return 'continue';
+        }``
+        const count = parts[3] ? parseInt(parts[3]) : this.game.getDefaultMoveCount(fromPile, toPile);
+
         if (!fromPile || !toPile) {
             this.view.showMessage('Invalid pile. Use: W (waste), T0-T6 (tableau), F0-F3 (foundation)', 'error');
             return 'continue';
         }
-        
+
         // Pobieramy karty do przeniesienia
         const cards = this.getCardsToMove(fromPile, count);
         if (!cards) {
@@ -121,10 +127,10 @@ export class ConsoleController {
                 if (i < 0 || !fromPile.cards[i].visible) return null;
                 cards.push(fromPile.cards[i]);
             }
+
             
             // Sprawdzamy czy to poprawna sekwencja (is-tableau-build?)
-            if (!this.isValidTableauBuild(cards)) return null;
-            
+            if (!this.game.isValidTableauBuild(cards)) return null;
             return cards.reverse();
         }
         
@@ -132,27 +138,8 @@ export class ConsoleController {
         if (fromPile.type === 'foundation') {
             return [fromPile.top()];
         }
-        
+
         return null;
-    }
-    
-    // Implementacja is-tableau-build? z .scm
-    isValidTableauBuild(cards) {
-        if (cards.length === 0) return false;
-        if (cards.length === 1) return true;
-
-        for (let i = 0; i < cards.length - 1; i++) {
-            const current = cards[i];
-            const next = cards[i + 1];
-
-            // Muszą być naprzemienne kolory
-            if (current.isRed() === next.isRed()) return false;
-
-            // Muszą być malejące wartości
-            if (current.value !== next.value + 1) return false;
-        }
-
-        return true;
     }
 
     handleHint() {

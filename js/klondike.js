@@ -181,6 +181,63 @@ export class KlondikeGame extends SolitaireGame {
         };
     }
 
+    getDefaultMoveCount(fromPile, toPile) {
+        // Foundation przyjmuje tylko 1 kartę
+        if (toPile.type === 'foundation') {
+            return 1;
+        }
+
+        // Waste też tylko 1
+        if (fromPile.type === 'waste') {
+            return 1;
+        }
+
+        // Tableau - wszystkie widoczne w sekwencji
+        if (fromPile.type === 'tableau') {
+            return this.getMaxMovableCards(fromPile);
+        }
+
+        return 1;
+    }
+
+    isValidTableauBuild(cards) {
+        if (cards.length === 0) return false;
+        if (cards.length === 1) return true;
+
+        for (let i = 0; i < cards.length - 1; i++) {
+            const current = cards[i];
+            const next = cards[i + 1];
+
+            // Muszą być naprzemienne kolory
+            if (current.isRed() === next.isRed()) return false;
+
+            // Muszą być malejące wartości
+            if (current.value !== next.value + 1) return false;
+        }
+
+        return true;
+    }
+
+    getMaxMovableCards(fromPile) {
+        if (fromPile.type !== 'tableau') return 1;
+
+        const cards = fromPile.cards;
+        let count = 0;
+
+        for (let i = cards.length - 1; i >= 0; i--) {
+            if (!cards[i].visible) break;
+            count++;
+
+            const sequence = cards.slice(i);
+            if (!this.isValidTableauBuild(sequence)) {
+                count--;
+                break;
+            }
+        }
+
+        return Math.max(1, count);
+    }
+
     serialize() {
         return JSON.stringify({
             stock: this.stock.cards,
