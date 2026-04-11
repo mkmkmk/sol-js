@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #4ec9b0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#game-output {
+    background-color: #252526;
+    border: 1px solid #3e3e42;
+    border-radius: 4px;
+    padding: 20px;
+    min-height: 500px;
+    margin-bottom: 20px;
+    white-space: pre;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+}
+
+#command-input {
+    flex: 1;
+    background-color: #3c3c3c;
+    border: 1px solid #3e3e42;
+    color: #d4d4d4;
+    padding: 10px 15px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+#command-input:focus {
+    outline: none;
+    border-color: #007acc;
+}
+
+#submit-btn {
+    background-color: #0e639c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+#submit-btn:hover {
+    background-color: #1177bb;
+}
+
+#submit-btn:active {
+    background-color: #0d5a8f;
+}
+
+/* Kolory dla kart */
+.red-card {
+    color: #f48771;
+}
+
+.black-card {
+    color: #d4d4d4;
+}

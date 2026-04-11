@@ -1,0 +1,14 @@
+{
+  "name": "klondike-solitaire",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Klondike Solitaire in JavaScript",
+  "main": "js/node-main.js",
+  "scripts": {
+    "start": "node js/node-main.js",
+    "dev": "nodemon js/node-main.js"
+  },
+  "keywords": ["solitaire", "klondike", "game"],
+  "author": "",
+  "license": "GPL-3.0"
+}
