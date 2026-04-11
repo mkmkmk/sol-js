@@ -25,7 +25,7 @@ class NodeConsoleView {
         // Tableau
         console.log(this.renderTableau(state));
         console.log('');
-        
+
         // Status
         console.log(`Score: ${state.score}`);
         console.log(`Stock: ${state.stock.cards.length} cards`);
@@ -33,20 +33,20 @@ class NodeConsoleView {
         console.log(`Can deal: ${state.canDeal ? 'Yes' : 'No'}`);
         console.log('');
     }
-    
+
     renderStockAndWaste(state) {
-        const stockStr = state.stock.isEmpty() 
+        const stockStr = state.stock.isEmpty()
             ? '[  ]'.padEnd(6)
             : `[${state.stock.cards.length.toString().padStart(2)}]`.padEnd(6);
-        
+
         const wasteCards = state.waste.cards.slice(-3);
         const wasteStr = wasteCards.length === 0
             ? '[  ]'.padEnd(6)
             : wasteCards.map(c => `[${this.cardToString(c)}]`).join(' ');
-        
+
         return `Stock: ${stockStr}  Waste: ${wasteStr}`;
     }
-    
+
     renderFoundations(state) {
         let output = 'Foundations:\n';
         const foundationStrs = state.foundations.map((f, i) => {
@@ -58,12 +58,12 @@ class NodeConsoleView {
         output += '  ' + foundationStrs.join('   ');
         return output;
     }
-    
+
     renderTableau(state) {
         let output = 'Tableau:\n';
-        
+
         const maxHeight = Math.max(...state.tableau.map(t => t.cards.length), 1);
-        
+
         for (let row = 0; row < maxHeight; row++) {
             const rowStrs = state.tableau.map((pile, col) => {
                 if (row >= pile.cards.length) {
@@ -75,26 +75,29 @@ class NodeConsoleView {
                 }
                 return `[${this.cardToString(card)}]`;
             });
-            
+
             output += `  ${rowStrs.join(' ')}\n`;
         }
-        
+
         const colNumbers = state.tableau.map((_, i) => ` T${i}  `).join(' ');
         output += `  ${colNumbers}`;
-        
+
         return output;
     }
-    
+
     cardToString(card) {
         const suits = ['♠', '♥', '♦', '♣'];
-        const values = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
-        
+        const values = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
         const valueStr = values[card.value];
         const suitStr = suits[card.suit];
-        
-        return `${valueStr}${suitStr}`.padEnd(3);
+        const cardStr = `${valueStr}${suitStr}`.padEnd(3);
+
+        if (card.isRed())
+            return (valueStr + '\x1b[31m' + suitStr + '\x1b[0m').padEnd(3 + 9);
+        return (valueStr + suitStr).padEnd(3);
     }
-    
+
     showHelp() {
         console.log('\n=== COMMANDS ===\n');
         console.log('  d              - Deal from stock');
@@ -107,12 +110,12 @@ class NodeConsoleView {
         console.log('  new            - New game');
         console.log('  quit           - Exit game\n');
     }
-    
+
     showMessage(message, type = 'info') {
         const prefix = type === 'error' ? '✗' : type === 'success' ? '✓' : '💡';
         console.log(`${prefix} ${message}`);
     }
-    
+
     appendOutput(text) {
         console.log(text);
     }
@@ -124,9 +127,9 @@ function main() {
         maxRedeal: 2,
         kingsOnly: true
     });
-    
+
     game.setup();
-    
+
     const view = new NodeConsoleView(game);
     const controller = new ConsoleController(game, view);
 
