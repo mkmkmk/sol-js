@@ -6,7 +6,7 @@ export class KlondikeGame extends SolitaireGame {
     constructor(options = {}) {
         super();
         this.dealThree = options.dealThree || false;
-        this.maxRedeal = options.maxRedeal ?? 2;
+        this.maxRedeal = options.maxRedeal ?? 5;
         this.kingsOnly = options.kingsOnly ?? true;
         this.redealCount = 0;
     }

@@ -124,7 +124,6 @@ class NodeConsoleView {
 function main() {
     let game = new KlondikeGame({
         dealThree: false,
-        maxRedeal: 2,
         kingsOnly: true
     });
 
@@ -184,7 +183,6 @@ function main() {
         if (result === 'new') {
             game = new KlondikeGame({
                 dealThree: false,
-                maxRedeal: 2,
                 kingsOnly: true
             });
             game.setup();
