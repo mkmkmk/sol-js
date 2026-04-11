@@ -191,11 +191,17 @@ function main() {
             controller.game = game;
             view.game = game;
         }
-        
-        view.render();
+
+        // if (result !== 'skip-render') {
+        //     view.render();
+        // }
+        if (result !== 'skip-render') {
+            console.clear();
+            view.render();
+        }
         rl.prompt();
     });
-    
+
     rl.on('close', () => {
         console.log('\nGoodbye!');
         process.exit(0);

@@ -3,37 +3,38 @@ export class ConsoleController {
         this.game = game;
         this.view = view;
     }
-    
+
     parseCommand(input) {
         const parts = input.trim().toLowerCase().split(/\s+/);
         const cmd = parts[0];
-        
-        switch(cmd) {
+
+        switch (cmd) {
             case 'd':
             case 'deal':
                 return this.handleDeal();
-                
+
             case 'm':
             case 'move':
                 return this.handleMove(parts);
-                
+
             case 'h':
             case 'hint':
-                return this.handleHint();
-                
+                this.handleHint();
+                return 'skip-render';
+
             case 'help':
                 this.view.showHelp();
-                return 'continue';
-                
+                return 'skip-render';
+
             case 'new':
                 return 'new';
-                
+
             default:
                 this.view.showMessage('Unknown command. Type "help" for commands.', 'error');
-                return 'continue';
+                return 'skip-render';
         }
     }
-    
+
     handleDeal() {
         if (this.game.dealFromStock()) {
             this.view.showMessage('Dealt cards from stock', 'success');
@@ -43,7 +44,7 @@ export class ConsoleController {
             return 'continue';
         }
     }
-    
+
     handleMove(parts) {
         // Format: m <from> <to> [count]
         if (parts.length < 3) {
@@ -66,11 +67,11 @@ export class ConsoleController {
             this.view.showMessage('Cannot get cards from source pile', 'error');
             return 'continue';
         }
-        
+
         // Próbujemy wykonać ruch
         if (this.game.move(cards, fromPile, toPile)) {
             this.view.showMessage('Move successful', 'success');
-            
+
             // Sprawdzamy wygraną
             if (this.game.isWon()) {
                 this.view.appendOutput('\n🎉 CONGRATULATIONS! YOU WON! 🎉\n\n');
@@ -78,10 +79,10 @@ export class ConsoleController {
         } else {
             this.view.showMessage('Invalid move', 'error');
         }
-        
+
         return 'continue';
     }
-    
+
     parsePile(str) {
         const state = this.game.getState();
         
@@ -139,21 +140,21 @@ export class ConsoleController {
     isValidTableauBuild(cards) {
         if (cards.length === 0) return false;
         if (cards.length === 1) return true;
-        
+
         for (let i = 0; i < cards.length - 1; i++) {
             const current = cards[i];
             const next = cards[i + 1];
-            
+
             // Muszą być naprzemienne kolory
             if (current.isRed() === next.isRed()) return false;
-            
+
             // Muszą być malejące wartości
             if (current.value !== next.value + 1) return false;
         }
-        
+
         return true;
     }
-    
+
     handleHint() {
         const hint = this.game.getHint();
         if (hint) {
