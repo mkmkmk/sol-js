@@ -1,6 +1,7 @@
 import readline from 'readline';
 import { KlondikeGame } from './klondike.js';
 import { ConsoleController } from './console-controller.js';
+import { writeFileSync, readFileSync, existsSync } from 'fs';
 
 class NodeConsoleView {
     constructor(game) {
@@ -128,7 +129,28 @@ function main() {
     
     const view = new NodeConsoleView(game);
     const controller = new ConsoleController(game, view);
-    
+
+    global.DEBUG = {
+        save: () => {
+            const state = game.serialize();
+            writeFileSync('debug-state-sav.json', state);
+            console.log('✓ State saved to debug-state-sav.json');
+        },
+        load: () => {
+            if (!existsSync('debug-state-sav.json')) {
+                console.log('✗ File debug-state-sav.json not found');
+                return;
+            }
+            const state = readFileSync('debug-state-sav.json', 'utf8');
+            game.deserialize(state);
+            view.render();
+            console.log('✓ State loaded from debug-state-sav.json');
+        },
+        game, view, controller
+    };
+    global.save = () => DEBUG.save();
+    global.load = () => DEBUG.load();
+
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,

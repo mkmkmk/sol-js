@@ -180,4 +180,46 @@ export class KlondikeGame extends SolitaireGame {
                 (this.maxRedeal === -1 || this.redealCount < this.maxRedeal)
         };
     }
+
+    serialize() {
+        return JSON.stringify({
+            stock: this.stock.cards,
+            waste: this.waste.cards,
+            foundations: this.foundations.map(f => f.cards),
+            tableau: this.tableau.map(t => t.cards),
+            score: this.score,
+            redealCount: this.redealCount,
+            options: {
+                dealThree: this.dealThree,
+                maxRedeal: this.maxRedeal,
+                kingsOnly: this.kingsOnly
+            }
+        }, null, 2);  // Pretty print z wcięciami
+    }
+
+    deserialize(json) {
+        const data = JSON.parse(json);
+
+        // Odtwórz karty (muszą być obiektami Card, nie plain objects)
+        this.stock.cards = data.stock.map(c => Object.assign(new Card(c.suit, c.value), c));
+        this.waste.cards = data.waste.map(c => Object.assign(new Card(c.suit, c.value), c));
+
+        this.foundations.forEach((f, i) => {
+            f.cards = data.foundations[i].map(c => Object.assign(new Card(c.suit, c.value), c));
+        });
+
+        this.tableau.forEach((t, i) => {
+            t.cards = data.tableau[i].map(c => Object.assign(new Card(c.suit, c.value), c));
+        });
+
+        this.score = data.score;
+        this.redealCount = data.redealCount;
+
+        // Opcjonalnie odtwórz opcje
+        if (data.options) {
+            this.dealThree = data.options.dealThree;
+            this.maxRedeal = data.options.maxRedeal;
+            this.kingsOnly = data.options.kingsOnly;
+        }
+    }
 }
