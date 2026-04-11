@@ -177,9 +177,9 @@ function main() {
             rl.close();
             return;
         }
-        
+
         const result = controller.parseCommand(command);
-        
+
         if (result === 'new') {
             game = new KlondikeGame({
                 dealThree: false,

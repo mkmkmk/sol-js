@@ -52,7 +52,6 @@ export class ConsoleController {
             return 'continue';
         }
 
-        
         const fromPile = this.parsePile(parts[1]);
         const toPile = this.parsePile(parts[2]);
 
@@ -92,35 +91,35 @@ export class ConsoleController {
 
     parsePile(str) {
         const state = this.game.getState();
-        
+
         if (str === 'w') return state.waste;
         if (str === 's') return state.stock;
-        
+
         if (str.startsWith('t')) {
             const index = parseInt(str.substring(1));
             if (index >= 0 && index < 7) {
                 return state.tableau[index];
             }
         }
-        
+
         if (str.startsWith('f')) {
             const index = parseInt(str.substring(1));
             if (index >= 0 && index < 4) {
                 return state.foundations[index];
             }
         }
-        
+
         return null;
     }
-    
+
     getCardsToMove(fromPile, count) {
         if (fromPile.isEmpty()) return null;
-        
+
         // Dla waste - zawsze tylko górna karta
         if (fromPile.type === 'waste') {
             return [fromPile.top()];
         }
-        
+
         // Dla tableau - pobieramy count widocznych kart od góry
         if (fromPile.type === 'tableau') {
             const cards = [];
@@ -129,12 +128,11 @@ export class ConsoleController {
                 cards.push(fromPile.cards[i]);
             }
 
-            
             // Sprawdzamy czy to poprawna sekwencja (is-tableau-build?)
             if (!this.game.isValidTableauBuild(cards)) return null;
             return cards.reverse();
         }
-        
+
         // Dla foundation - tylko górna karta
         if (fromPile.type === 'foundation') {
             return [fromPile.top()];
