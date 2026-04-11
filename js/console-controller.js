@@ -81,6 +81,7 @@ export class ConsoleController {
             // Sprawdzamy wygraną
             if (this.game.isWon()) {
                 this.view.appendOutput('\n🎉 CONGRATULATIONS! YOU WON! 🎉\n\n');
+                return 'won';
             }
         } else {
             this.view.showMessage('Invalid move', 'error');

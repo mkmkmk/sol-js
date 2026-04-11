@@ -192,13 +192,16 @@ function main() {
             view.game = game;
         }
 
-        // if (result !== 'skip-render') {
-        //     view.render();
-        // }
-        if (result !== 'skip-render') {
+        if (result === 'won') {
+            rl.prompt();
+            return;
+        }
+
+        if (result !== 'skip-render' && result !== 'error') {
             console.clear();
             view.render();
         }
+
         rl.prompt();
     });
 
