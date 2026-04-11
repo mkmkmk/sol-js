@@ -34,7 +34,7 @@ Tekstowa wersja pasjansa Klondike zaimplementowana w JavaScript na podstawie kod
 - `js/card.js` - Klasa karty
 - `js/pile.js` - Klasa stosu kart
 - `js/game-base.js` - Bazowa klasa gry
-- `js/klondike.js` - Logika Klondike (z klondike.scm)
+- `js/klondike.js` - Logika Klondike
 - `js/console-view.js` - Widok tekstowy
 - `js/console-controller.js` - Obsługa komend
 - `js/main.js` - Główna aplikacja

@@ -12,7 +12,7 @@ export class KlondikeGame extends SolitaireGame {
     }
 
     setup() {
-        // Tworzymy sloty (jak w .scm)
+        // Tworzymy sloty
         this.stock = new Pile('stock');
         this.waste = new Pile('waste');
         this.foundations = [
@@ -59,7 +59,7 @@ export class KlondikeGame extends SolitaireGame {
     }
 
     dealTableau() {
-        // Rozdajemy jak w .scm: 1 karta na stos 0, 2 na stos 1, itd.
+        // Rozdajemy: 1 karta na stos 0, 2 na stos 1, itd.
         for (let i = 0; i < 7; i++) {
             for (let j = i; j < 7; j++) {
                 const card = this.stock.cards.pop();
@@ -70,7 +70,6 @@ export class KlondikeGame extends SolitaireGame {
         }
     }
 
-    // Implementacja droppable? z .scm
     canMove(cards, fromPile, toPile) {
         if (cards.length === 0) return false;
 
@@ -104,7 +103,6 @@ export class KlondikeGame extends SolitaireGame {
         return false;
     }
 
-    // Implementacja complete-transaction z .scm
     move(cards, fromPile, toPile) {
 
         console.log('=== canMove DEBUG ===');
@@ -115,7 +113,7 @@ export class KlondikeGame extends SolitaireGame {
 
         if (!this.canMove(cards, fromPile, toPile)) return false;
 
-        // Odwracamy kolejność przy dodawaniu do stosu (adapter dla formatu .scm)
+        // Odwracamy kolejność przy dodawaniu do stosu (adapter)
         const cardsToAdd = [...cards].reverse();
 
         cardsToAdd.forEach(card => {
