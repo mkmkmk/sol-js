@@ -7,21 +7,21 @@ class NodeConsoleView {
     constructor(game) {
         this.game = game;
     }
-    
+
     render() {
         const state = this.game.getState();
-        console.clear();
-        
+        // console.clear();
+
         console.log('=== KLONDIKE SOLITAIRE ===\n');
-        
+
         // Stock i Waste
         console.log(this.renderStockAndWaste(state));
         console.log('');
-        
+
         // Foundations
         console.log(this.renderFoundations(state));
         console.log('');
-        
+
         // Tableau
         console.log(this.renderTableau(state));
         console.log('');
@@ -156,19 +156,20 @@ function main() {
         output: process.stdout,
         prompt: '> '
     });
-    
+
+    console.clear();
     view.render();
     view.showHelp();
     rl.prompt();
-    
+
     rl.on('line', (input) => {
         const command = input.trim();
-        
+
         if (!command) {
             rl.prompt();
             return;
         }
-        
+
         if (command.toLowerCase() === 'quit' || command.toLowerCase() === 'q') {
             console.log('\nThanks for playing!');
             rl.close();
