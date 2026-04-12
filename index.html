@@ -3,16 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klondike Solitaire - Console Version</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Klondike Solitaire</title>
+    <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
-    <div class="container">
-        <!-- <h1>Klondike Solitaire</h1> -->
-        <div id="game-output"></div>
-        <div class="input-area">
-            <input type="text" id="command-input" placeholder="Enter command (type 'help' for commands)" autofocus>
-            <button id="submit-btn">Execute</button>
+    <div id="game-container">
+        <div id="top-area">
+            <div id="stock-waste">
+                <div id="stock" class="pile"></div>
+                <div id="waste" class="pile"></div>
+            </div>
+            <div id="foundations">
+                <div id="foundation-0" class="pile foundation"></div>
+                <div id="foundation-1" class="pile foundation"></div>
+                <div id="foundation-2" class="pile foundation"></div>
+                <div id="foundation-3" class="pile foundation"></div>
+            </div>
+        </div>
+        <div id="tableau">
+            <div id="tableau-0" class="pile tableau-pile"></div>
+            <div id="tableau-1" class="pile tableau-pile"></div>
+            <div id="tableau-2" class="pile tableau-pile"></div>
+            <div id="tableau-3" class="pile tableau-pile"></div>
+            <div id="tableau-4" class="pile tableau-pile"></div>
+            <div id="tableau-5" class="pile tableau-pile"></div>
+            <div id="tableau-6" class="pile tableau-pile"></div>
+        </div>
+        <div id="status">
+            <span id="score">Score: 0</span>
+            <span id="moves">Moves: 0</span>
+            <button id="new-game">New Game</button>
         </div>
     </div>
     

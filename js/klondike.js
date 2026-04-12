@@ -199,6 +199,9 @@ export class KlondikeGame extends SolitaireGame {
     }
 
     isValidTableauBuild(cards) {
+        console.log('=== isValidTableauBuild ===');
+        console.log('Cards:', cards.map(c => c.toString()));
+
         if (cards.length === 0) return false;
         if (cards.length === 1) return true;
 
@@ -206,6 +209,10 @@ export class KlondikeGame extends SolitaireGame {
             const current = cards[i];
             const next = cards[i + 1];
 
+            console.log(`Checking: ${current.toString()} -> ${next.toString()}`);
+            console.log(`  Colors: ${current.isRed()} vs ${next.isRed()}`);
+            console.log(`  Values: ${current.value} vs ${next.value}`);
+            
             // Muszą być naprzemienne kolory
             if (current.isRed() === next.isRed()) return false;
 
