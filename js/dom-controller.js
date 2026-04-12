@@ -79,6 +79,11 @@ export class DomController {
 
         // Jeśli już coś zaznaczone - próbuj przenieść
         if (this.view.selectedCards) {
+            // Sprawdź czy kliknięto tę samą kartę/pile - anuluj
+            if (this.view.selectedPile === pile) {
+                this.view.clearSelection();
+                return;  // Anuluj bez komunikatu
+            }
             const targetPile = this.findPileFromElement(cardEl);
             if (targetPile) {
                 this.tryMove(targetPile);
