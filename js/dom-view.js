@@ -25,7 +25,8 @@ export class DomView {
         });
 
         // Aktualizuj status
-        document.getElementById('score').textContent = `Score: ${state.score}`;
+        document.getElementById('moves').textContent = `Redeals: ${state.redealCount}/${state.maxRedeal === -1 ? '∞' : state.maxRedeal}`;
+
     }
 
     renderStock(stock) {
@@ -135,9 +136,17 @@ export class DomView {
             pileEl.style.setProperty('--selection-start', startIndex);
             pileEl.style.setProperty('--selection-count', cards.length);
         } else {
-            // Waste/foundation - tylko podświetl kartę
+            // Waste/foundation - tylko podświetl kartę z tego konkretnego pile
+            const pileIndex = pile.type === 'foundation' ?
+                this.game.getState().foundations.indexOf(pile) : null;
+
             document.querySelectorAll('.card').forEach(cardEl => {
-                if (cardEl.dataset.pile === pile.type) {
+                if (pile.type === 'foundation') {
+                    const cardPileIndex = parseInt(cardEl.dataset.index);
+                    if (cardEl.dataset.pile === 'foundation' && cardPileIndex === pileIndex) {
+                        cardEl.classList.add('selected');
+                    }
+                } else if (cardEl.dataset.pile === pile.type) {
                     cardEl.classList.add('selected');
                 }
             });
