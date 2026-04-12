@@ -61,11 +61,11 @@ export class DomController {
             // Pobierz wszystkie karty od klikniętej do góry
             cards = pile.cards.slice(cardIndex);
 
-            console.log('=== DEBUG ===');
-            console.log('Clicked card index:', cardIndex);
-            console.log('Total cards in pile:', pile.cards.length);
-            console.log('Cards to select:', cards.length);
-            console.log('Cards:', cards.map(c => c.toString()));
+            // console.log('=== DEBUG ===');
+            // console.log('Clicked card index:', cardIndex);
+            // console.log('Total cards in pile:', pile.cards.length);
+            // console.log('Cards to select:', cards.length);
+            // console.log('Cards:', cards.map(c => c.toString()));
 
             // Sprawdź czy to poprawna sekwencja
             if (!this.game.isValidTableauBuild(cards.slice())) {
