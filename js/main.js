@@ -1,7 +1,7 @@
 import { KlondikeGame } from './klondike.js';
 import { ConsoleView } from './console-view.js';
 import { ConsoleController } from './console-controller.js';
-import { Card } from './card.js';
+import { Card } from './game-base.js';
 
 let game, view, controller;
 

@@ -1,6 +1,6 @@
 import { SolitaireGame } from './game-base.js';
-import { Card } from './card.js';
-import { Pile } from './pile.js';
+import { Card } from './game-base.js';
+import { Pile } from './game-base.js';
 
 export class KlondikeGame extends SolitaireGame {
     constructor(options = {}) {
