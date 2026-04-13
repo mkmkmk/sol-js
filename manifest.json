@@ -1,0 +1,6 @@
+{
+  "name": "Klondike Solitaire",
+  "short_name": "Klondike",
+  "orientation": "landscape",
+  "display": "standalone"
+}
