@@ -12,11 +12,13 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    overflow: auto;
 }
 
 #game-container {
     max-width: 900px;
     width: 100%;
+    transform-origin: top center;
 }
 
 #top-area {
@@ -206,5 +208,8 @@ body {
     
     #stock-waste {
         gap: 10px;
+    }
+    #game-container {
+        transform: scale(0.7);
     }
 }
