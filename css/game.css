@@ -209,7 +209,4 @@ body {
     #stock-waste {
         gap: 10px;
     }
-    #game-container {
-        transform: scale(0.7);
-    }
 }
