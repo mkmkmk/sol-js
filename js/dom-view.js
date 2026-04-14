@@ -79,7 +79,8 @@ export class DomView {
             const cardEl = this.createCardElement(card, card.visible);
             cardEl.style.position = 'absolute';
             // cardEl.style.top = `${cardIndex * 25}px`;
-            const offset = window.innerWidth < 768 ? 15 : 25;
+            // const offset = window.innerWidth < 768 ? 15 : 25;
+            const offset = 20;
             cardEl.style.top = `${cardIndex * offset}px`;
             cardEl.dataset.pile = 'tableau';
             cardEl.dataset.pileIndex = pileIndex;
