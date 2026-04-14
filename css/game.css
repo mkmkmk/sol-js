@@ -16,7 +16,7 @@ body {
 #game-container {
     max-width: 900px;
     width: 100%;
-    /* transform-origin: top center; */
+    padding: 0 50px;
 }
 
 #top-area {
