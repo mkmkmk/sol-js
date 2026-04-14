@@ -183,7 +183,7 @@ body {
     transform: rotate(180deg);
 }
 
-/* Mobile responsive */
+/* Mobile responsive 
 @media (max-width: 768px) {
     #tableau {
         gap: 5px;
@@ -208,5 +208,62 @@ body {
     
     #stock-waste {
         gap: 10px;
+    }
+}
+*/
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    #game-container {
+        transform: scale(0.85);
+        transform-origin: top center;
+    }
+    
+    #tableau {
+        gap: 3px;  /* Zmniejsz gap */
+    }
+    
+    .pile, .card {
+        width: 50px;   /* Mniejsze karty */
+        height: 70px;
+    }
+    
+    .card-corner {
+        font-size: 10px;  /* Mniejszy font */
+    }
+    
+    .card-corner.top-left,
+    .card-corner.top-right {
+        top: 3px;
+    }
+    
+    .card-corner.top-left,
+    .card-corner.bottom-left {
+        left: 3px;
+    }
+    
+    .card-corner.top-right,
+    .card-corner.bottom-right {
+        right: 3px;
+    }
+    
+    .card-corner.bottom-left,
+    .card-corner.bottom-right {
+        bottom: 3px;
+    }
+    
+    .tableau-pile {
+        min-height: 300px;  
+    }
+    
+    
+    #foundations {
+        gap: 3px;
+    }
+    
+    #stock-waste {
+        gap: 5px;
     }
 }
