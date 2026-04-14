@@ -7,7 +7,6 @@ let game, view, controller;
 function init() {
     game = new KlondikeGame({
         dealThree: false,
-        maxRedeal: 5,
         kingsOnly: true
     });
 
