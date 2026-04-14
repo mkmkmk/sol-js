@@ -13,15 +13,6 @@ body {
     overflow-x: hidden;
 }
 
-#viewport-wrapper {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    width: 100%;
-}
-
 #game-container {
     max-width: 900px;
     width: 100%;
@@ -219,64 +210,59 @@ body {
 }
 */
 @media (max-width: 768px) {
+    
     body {
         padding: 10px;
     }
     
-    #viewport-wrapper {
-        padding: 10px;
-        align-items: flex-start;
+    #game-container {
+        width: 900px;
+        margin: 10px auto;
     }
 
-    #game-container {
-        width: 100%;
-        max-width: none;
-        /* transform: scale(0.85);
-        transform-origin: top center; */
-    }
-    
     #tableau {
         gap: 3px;
     }
-    
-    .pile, .card {
+
+    .pile,
+    .card {
         width: 50px;
         height: 70px;
     }
-    
+
     .card-corner {
         font-size: 10px;
     }
-    
+
     .card-corner.top-left,
     .card-corner.top-right {
         top: 3px;
     }
-    
+
     .card-corner.top-left,
     .card-corner.bottom-left {
         left: 3px;
     }
-    
+
     .card-corner.top-right,
     .card-corner.bottom-right {
         right: 3px;
     }
-    
+
     .card-corner.bottom-left,
     .card-corner.bottom-right {
         bottom: 3px;
     }
-    
+
     .tableau-pile {
-        min-height: 300px;  
+        min-height: 300px;
     }
-    
-    
+
+
     #foundations {
         gap: 3px;
     }
-    
+
     #stock-waste {
         gap: 5px;
     }

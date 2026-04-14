@@ -3,42 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=0.25, user-scalable=yes"> -->
-    <meta name="viewport" content="width=900, user-scalable=yes">
+    <!-- <meta name="viewport" content="width=900, user-scalable=yes"> -->
+     <meta name="viewport" content="width=1200, initial-scale=0.5, minimum-scale=0.1, maximum-scale=5.0, user-scalable=yes">
     <title>Klondike Solitaire</title>
     <link rel="stylesheet" href="css/game.css">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <div id="viewport-wrapper">
-        <div id="game-container">
-            <div id="top-area">
-                <div id="stock-waste">
-                    <div id="stock" class="pile"></div>
-                    <div id="waste" class="pile"></div>
-                </div>
-                <div id="foundations">
-                    <div id="foundation-0" class="pile foundation"></div>
-                    <div id="foundation-1" class="pile foundation"></div>
-                    <div id="foundation-2" class="pile foundation"></div>
-                    <div id="foundation-3" class="pile foundation"></div>
-                </div>
+    <div id="game-container">
+        <div id="top-area">
+            <div id="stock-waste">
+                <div id="stock" class="pile"></div>
+                <div id="waste" class="pile"></div>
             </div>
-            <div id="tableau">
-                <div id="tableau-0" class="pile tableau-pile"></div>
-                <div id="tableau-1" class="pile tableau-pile"></div>
-                <div id="tableau-2" class="pile tableau-pile"></div>
-                <div id="tableau-3" class="pile tableau-pile"></div>
-                <div id="tableau-4" class="pile tableau-pile"></div>
-                <div id="tableau-5" class="pile tableau-pile"></div>
-                <div id="tableau-6" class="pile tableau-pile"></div>
-            </div>
-            <div id="status">
-                <span id="score">Score: 0</span>
-                <span id="moves">Moves: 0</span>
-                <button id="new-game">New Game</button>
+            <div id="foundations">
+                <div id="foundation-0" class="pile foundation"></div>
+                <div id="foundation-1" class="pile foundation"></div>
+                <div id="foundation-2" class="pile foundation"></div>
+                <div id="foundation-3" class="pile foundation"></div>
             </div>
         </div>
+        <div id="tableau">
+            <div id="tableau-0" class="pile tableau-pile"></div>
+            <div id="tableau-1" class="pile tableau-pile"></div>
+            <div id="tableau-2" class="pile tableau-pile"></div>
+            <div id="tableau-3" class="pile tableau-pile"></div>
+            <div id="tableau-4" class="pile tableau-pile"></div>
+            <div id="tableau-5" class="pile tableau-pile"></div>
+            <div id="tableau-6" class="pile tableau-pile"></div>
+        </div>
+        <div id="status">
+            <span id="score">Score: 0</span>
+            <span id="moves">Moves: 0</span>
+            <button id="new-game">New Game</button>
+        </div>
     </div>
+
     <script type="module" src="js/dom-main.js"></script>
 </body>
 </html>
