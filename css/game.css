@@ -8,17 +8,24 @@ body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#viewport-wrapper {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    overflow: auto;
+    width: 100%;
 }
 
 #game-container {
     max-width: 900px;
     width: 100%;
-    transform-origin: top center;
+    /* transform-origin: top center; */
 }
 
 #top-area {
@@ -216,22 +223,29 @@ body {
         padding: 10px;
     }
     
+    #viewport-wrapper {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
     #game-container {
-        transform: scale(0.85);
-        transform-origin: top center;
+        width: 100%;
+        max-width: none;
+        /* transform: scale(0.85);
+        transform-origin: top center; */
     }
     
     #tableau {
-        gap: 3px;  /* Zmniejsz gap */
+        gap: 3px;
     }
     
     .pile, .card {
-        width: 50px;   /* Mniejsze karty */
+        width: 50px;
         height: 70px;
     }
     
     .card-corner {
-        font-size: 10px;  /* Mniejszy font */
+        font-size: 10px;
     }
     
     .card-corner.top-left,
