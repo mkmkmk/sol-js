@@ -12,6 +12,7 @@ export class KlondikeGame extends SolitaireGame {
     }
 
     setup() {
+        this.redealCount = 0;
         // Tworzymy sloty
         this.stock = new Pile('stock');
         this.waste = new Pile('waste');
